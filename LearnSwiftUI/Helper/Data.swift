@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+
+//Ta nên dùng struct trong swift vì nó tối ưu hơn trong swift và là loại value Type
+//Class thì là referenced Type và dùng dc với objectiveC, struct thì ko
+//Còn về cơ bản thì như nhau thôi
 struct MenuSection: Codable, Identifiable {
     var id: UUID
     var name: String
@@ -35,8 +39,8 @@ struct MenuItem: Codable, Equatable, Identifiable {
     #endif
 }
 
-class Order {
-    var items = [MenuItem]()
+class Order: ObservableObject {
+    @Published var items = [MenuItem]()
 
     var total: Int {
         if items.count > 0 {
