@@ -25,7 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         //Ở đây ta sẽ có 1 EnvironmentObject cho cả hệ thống này, là order, truyền vào cho appview, appview sẽ truyền xuống dưới cho bọn khác
-        let contentView = AppView().environmentObject(order)
+//        let contentView = AppView().environmentObject(order)
+        let contentView = TestTransformingView()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
