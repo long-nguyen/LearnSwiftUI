@@ -16,7 +16,6 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var order = Order()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -25,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         //Ở đây ta sẽ có 1 EnvironmentObject cho cả hệ thống này, là order, truyền vào cho appview, appview sẽ truyền xuống dưới cho bọn khác
-//        let contentView = AppView().environmentObject(order)
-        let contentView = AnimationView()
+        let contentView = AppView().environmentObject(PreferenceMng.instance)
+//        let contentView = AppView()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

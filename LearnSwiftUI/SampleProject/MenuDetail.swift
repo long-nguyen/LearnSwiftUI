@@ -10,8 +10,8 @@ import SwiftUI
 
 struct MenuDetail: View {
     var data: MenuItem
-    @EnvironmentObject var order: Order
-    
+    @EnvironmentObject var pref:PreferenceMng
+
     var body: some View {
         VStack {
             ZStack(alignment: .bottomTrailing) {
@@ -39,8 +39,7 @@ struct MenuDetail: View {
             
             //Order button
             Button(action: {
-                //action
-                self.order.add(item: self.data)
+                addOrder()
             }) {
                 HStack {
                     Image(systemName: "arrowshape.turn.up.right")
@@ -63,14 +62,22 @@ struct MenuDetail: View {
         }
             .navigationBarTitle(Text(data.name), displayMode: .inline)
     }
+    
+    func addOrder() {
+        if pref.token != nil{
+            pref.order.add(item: self.data)
+        } else {
+            Alerts.showMessage(message: "Token not set")
+        }
+    }
+    
 }
 
 struct MenuDetail_Previews: PreviewProvider {
     //Bởi vì cái menu detail này nó dùng 1 biến Environment Object nên để preview nó được thì phải tạo 1 cái sample order parameter thế này
-    static let order = Order()
     static var previews: some View {
         NavigationView {
-            MenuDetail(data: MenuItem.example).environmentObject(order)
+            MenuDetail(data: MenuItem.example)
         }
         
     }
